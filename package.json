@@ -1,0 +1,8 @@
+{
+  "name": "hyper-wallpaper",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "inside-hakumai",
+  "license": "MIT",
+  "private": false
+}
