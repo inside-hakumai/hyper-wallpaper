@@ -4,6 +4,7 @@
 exports.decorateConfig = (config) => {
 
   const wallpaperPath = config.wallpaperPath || null;
+  const wallpaperSize = config.wallpaperSize || 'cover';
 
   console.log(wallpaperPath);
 
@@ -14,7 +15,7 @@ exports.decorateConfig = (config) => {
     }
     .terms_terms {
       background: url(file://${wallpaperPath}) center;
-      background-size: cover;
+      background-size: ${wallpaperSize};
     }
     .terms_termGroup {
       background: rgba(0,0,0,0.7) !important
