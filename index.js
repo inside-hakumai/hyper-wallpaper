@@ -10,9 +10,6 @@ exports.decorateConfig = (config) => {
 
 
   const cssString = `
-    .header_header {
-      background: linear-gradient(#37383D, #2B2B2F);
-    }
     .terms_terms {
       background: url(file://${wallpaperPath}) center;
       background-size: ${wallpaperSize};
