@@ -30,3 +30,39 @@ exports.decorateConfig = (config) => {
       `
   });
 };
+
+exports.decorateMenu = (menu) => {
+
+  console.log(JSON.stringify(menu, undefined, 2));
+
+  let indexForPluginItemInMenu = menu.findIndex((element) => {
+    return element['label'] === 'Plugins'
+  });
+
+  menu[indexForPluginItemInMenu]['submenu'].push({
+    type: 'separator'
+  });
+  menu[indexForPluginItemInMenu]['submenu'].push({
+    label: 'hyper-wallpaper',
+    submenu: [
+      {
+        label: 'Switch to previous profile',
+        accelerator: 'command+o',
+        click: () => {
+          console.log('hoge');
+        }
+      }, {
+        label: 'Switch to next profile',
+        accelerator: 'command+p',
+        click: () => {
+          console.log('hoge');
+        }
+      }
+    ]
+  });
+
+  console.log(indexForPluginItemInMenu);
+
+
+  return menu
+};
