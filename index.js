@@ -8,9 +8,10 @@ exports.decorateConfig = (config) => {
 
   console.log(wallpaperPath);
 
-
   const cssString = `
-    .terms_terms {
+    .hyper-wallpaper-wrapper {
+      width: 100%;
+      height: 100%;
       background: url(file://${wallpaperPath}) center;
       background-size: ${wallpaperSize};
     }
@@ -29,6 +30,22 @@ exports.decorateConfig = (config) => {
       ${wallpaperPath ? cssString : ''}
       `
   });
+};
+
+exports.decorateTerms = (Terms, {React, notify, Notification}) => {
+
+  let _customChildrenBefore = React.createElement('div', {
+    className: 'hyper-wallpaper-wrapper'
+  });
+
+  return class extends React.Component {
+
+    render () {
+      return React.createElement(Terms, Object.assign({}, this.props, {
+        customChildrenBefore: _customChildrenBefore
+      }));
+    }
+  };
 };
 
 exports.decorateMenu = (menu) => {
