@@ -1,19 +1,39 @@
 'use strict';
 
+exports.middleware = (store) => (next) => (action) => {
+  if ('CONFIG_LOAD' === action.type || 'CONFIG_RELOAD' === action.type) {
+    store.dispatch({
+      type: 'SET_WALLPAPER_CONFIG',
+      bgProfiles: action.config.bgProfiles
+    });
+  }
+  next(action);
+};
+
+exports.reduceUI = (state, action) => {
+  switch (action.type) {
+    case 'SET_WALLPAPER_CONFIG':
+      return state.set('wallpaperConfig', action.bgProfiles);
+  }
+  return state;
+};
+
+exports.mapTermsState = (state, map) => {
+  return Object.assign(map, {
+    wallpaperConfig: state.ui.wallpaperConfig
+  });
+};
 
 exports.decorateConfig = (config) => {
-
-  const wallpaperPath = config.wallpaperPath || null;
-  const wallpaperSize = config.wallpaperSize || 'cover';
-
-  console.log(wallpaperPath);
 
   const cssString = `
     .hyper-wallpaper-wrapper {
       width: 100%;
       height: 100%;
-      background: url(file://${wallpaperPath}) center;
-      background-size: ${wallpaperSize};
+    }
+    .hyper-wallpaper-wrapper .profile {
+      width: 100%;
+      height: 100%;
     }
     .terms_termGroup {
       background: rgba(0,0,0,0.7) !important
@@ -24,33 +44,46 @@ exports.decorateConfig = (config) => {
     `;
 
   return Object.assign({}, config, {
-    backgroundColor: wallpaperPath ? 'rgba(255, 255, 255, 0.0)' : config.backgroundColor,
+    backgroundColor: 'rgba(255, 255, 255, 0.0)',
     css: `
       ${config.css || ''} 
-      ${wallpaperPath ? cssString : ''}
+      ${cssString}
       `
   });
 };
 
 exports.decorateTerms = (Terms, {React, notify, Notification}) => {
 
-  let _customChildrenBefore = React.createElement('div', {
-    className: 'hyper-wallpaper-wrapper'
-  });
-
   return class extends React.Component {
+
+    constructor(props, context) {
+      super(props, context);
+
+      this.state = {
+        profileComponents: props.wallpaperConfig.map((config) => {
+          return React.createElement('div', {
+            className: 'profile',
+            style: {
+              backgroundImage: config.wallpaper ? `url(file://${config.filePath}` : null,
+              backgroundSize: config.wallpaper ? config.size : null,
+              color: !config.wallpaper ? config.color : null
+            }
+          })
+        })
+      };
+      this._customChildrenBefore = React.createElement('div', {className: 'hyper-wallpaper-wrapper'}, ...this.state.profileComponents);
+    }
 
     render () {
       return React.createElement(Terms, Object.assign({}, this.props, {
-        customChildrenBefore: _customChildrenBefore
+        customChildrenBefore: this._customChildrenBefore
+
       }));
     }
   };
 };
 
 exports.decorateMenu = (menu) => {
-
-  console.log(JSON.stringify(menu, undefined, 2));
 
   let indexForPluginItemInMenu = menu.findIndex((element) => {
     return element['label'] === 'Plugins'
@@ -77,9 +110,6 @@ exports.decorateMenu = (menu) => {
       }
     ]
   });
-
-  console.log(indexForPluginItemInMenu);
-
 
   return menu
 };
