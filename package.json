@@ -1,7 +1,18 @@
 {
   "name": "hyper-wallpaper",
   "version": "0.0.1",
-  "main": "index.js",
+  "keywords": [
+    "hyper",
+    "hyper.app",
+    "hyper-plugin",
+    "wallpaper",
+    "background"
+  ],
+  "description": "Extension for wallpaper with your favorite images in Hyper terminal",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inside-hakumai/hyper-wallpaper.git"
+  },
   "author": "inside-hakumai",
   "license": "MIT",
   "private": false
