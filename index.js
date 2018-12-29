@@ -106,7 +106,7 @@ exports.decorateTerms = (Terms, {React, notify, Notification}) => {
           backgroundImage: this.props.wallpaper ? `url(file://${this.props.filePath}` : null,
           backgroundSize: this.props.wallpaper ? this.props.size : null,
           backgroundPosition: 'center',
-          color: !this.props.wallpaper ? this.props.color : null,
+          backgroundColor: !this.props.wallpaper ? this.props.color : null,
           display: this.props.isActive ? 'block' : 'none'
         },
       })
@@ -137,7 +137,7 @@ exports.decorateTerms = (Terms, {React, notify, Notification}) => {
               wallpaper: config.wallpaper,
               filePath: config.filePath,
               size: config.size,
-              color: config.size,
+              color: config.color,
               isActive: (this.props.activeWallpaper === index)
             });
           })
