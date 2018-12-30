@@ -78,17 +78,21 @@ exports.decorateConfig = (config) => {
       background: rgba(0,0,0,0.7) !important
     }
     .xterm-viewport {
-      background: none;
+      background-color: rgba(0,0,0,0) !important;
     }
     `;
 
   return Object.assign({}, config, {
-    backgroundColor: 'rgba(255, 255, 255, 0.0)',
     css: `
       ${config.css || ''} 
       ${cssString}
       `
   });
+};
+
+exports.getTermProps = (uid, parentProps, props) => {
+  props.backgroundColor = 'rgba(0,0,0,0)';
+  return props;
 };
 
 exports.decorateTerms = (Terms, {React, notify, Notification}) => {
