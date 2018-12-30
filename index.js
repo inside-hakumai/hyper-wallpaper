@@ -23,7 +23,7 @@ exports.middleware = (store) => (next) => (action) => {
   if ('CONFIG_LOAD' === action.type || 'CONFIG_RELOAD' === action.type) {
     store.dispatch({
       type: 'SET_WALLPAPER_CONFIG',
-      bgProfiles: action.config.bgProfiles
+      bgProfiles: action.config.wallpapers
     });
   }
 
@@ -107,10 +107,10 @@ exports.decorateTerms = (Terms, {React, notify, Notification}) => {
       return React.createElement('div', {
         className: 'profile',
         style: {
-          backgroundImage: this.props.wallpaper ? `url(file://${this.props.filePath}` : null,
-          backgroundSize: this.props.wallpaper ? this.props.size : null,
+          backgroundImage: this.props.image ? `url(file://${this.props.filePath}` : null,
+          backgroundSize: this.props.image ? this.props.size : null,
           backgroundPosition: 'center',
-          backgroundColor: !this.props.wallpaper ? this.props.color : null,
+          backgroundColor: !this.props.image ? this.props.color : null,
           display: this.props.isActive ? 'block' : 'none'
         },
       })
@@ -138,7 +138,7 @@ exports.decorateTerms = (Terms, {React, notify, Notification}) => {
         customChildrenBefore: React.createElement('div', {className: 'hyper-wallpaper-wrapper'},
           ...this.props.wallpaperConfig.map((config, index) => {
             return React.createElement(WallPaperComponent, {
-              wallpaper: config.wallpaper,
+              image: config.image,
               filePath: config.filePath,
               size: config.size,
               color: config.color,
