@@ -10,8 +10,11 @@ Extension for [Hyper](https://hyper.is/) terminal which apply background image e
 - **Coexistence with non-image background**. You can remove background image and use simple monochromatic background
 
 ## Installation
+- Execute `$ hyper i hyper-wallpaper` in your Hyper terminal
 
-Execute `$ hyper i hyper-wallpaper` in your Hyper terminal or add `hyper-wallpaper` to the list of plugins in `~/.hyper.js` manually.
+or
+
+- Add `hyper-wallpaper` to the list of plugins in `~/.hyper.js` manually.
 
 
 ## Configuration
