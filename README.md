@@ -1,6 +1,6 @@
 # Hyper-Wallpaper
 
-Extension for Hyper which a set background image easily
+Extension for Hyper which apply background image easily
 
 ![demo](https://raw.githubusercontent.com/inside-hakumai/hyper-wallpaper/demo/demo.gif)
 
