@@ -47,7 +47,7 @@ module.exports = {
 
 Each item of `wallpaper` array shows configuration for a wallpaper.
 
-The available options in a wallpaper configurations are as follows:
+The available options in a wallpaper configuration are as follows:
 
 | Option | Type | Description |
 | --- | --- | --- |
