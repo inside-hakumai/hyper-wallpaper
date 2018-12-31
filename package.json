@@ -1,6 +1,7 @@
 {
   "name": "hyper-wallpaper",
   "version": "0.0.1",
+  "main": "index.js",
   "keywords": [
     "hyper",
     "hyper.app",
