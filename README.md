@@ -9,6 +9,11 @@ Extension for Hyper which apply background image easily
 - **Multiple images**. Hyper-Wallpaper lets you change background image instantly
 - **Coexistence with non-image background**. You can remove background image and use simple monochromatic background
 
+## Installation
+
+Execute `$ hyper i hyper-wallpaper` in your Hyper terminal or add `hyper-wallpaper` to the list of plugins in `~/.hyper.js` manually.
+
+
 ## Configuration
 `Hyper-Wallpaper` can be configured in `hyper.js` as follows:
 ```javascript
