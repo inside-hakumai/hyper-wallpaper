@@ -2,6 +2,8 @@
 
 Extension for Hyper which a set background image easily
 
+![demo](https://raw.githubusercontent.com/inside-hakumai/hyper-wallpaper/demo/demo.gif)
+
 ## Features
 - **Background Images with simple config**. You need to write only a few lines in `hyper.js`
 - **Multiple images**. Hyper-Wallpaper lets you change background image instantly
