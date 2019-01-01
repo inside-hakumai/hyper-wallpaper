@@ -1,5 +1,11 @@
 # Hyper-Wallpaper
 
+<p>
+  <a href="#hyper-version" alt="Hyper version">
+    <img src="https://img.shields.io/badge/Hyper-%3E%3D%202.1.0-lightgrey.svg" />
+  </a>
+</p>
+
 Extension for [Hyper](https://hyper.is/) terminal which apply background image easily
 
 ![demo](https://raw.githubusercontent.com/inside-hakumai/hyper-wallpaper/demo/demo.gif)
