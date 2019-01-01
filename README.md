@@ -6,7 +6,7 @@
   </a>
 </p>
 
-Extension for [Hyper](https://hyper.is/) terminal which apply background image easily
+Extension for [Hyper](https://hyper.is/) terminal which introduces background image easily
 
 ![demo](https://raw.githubusercontent.com/inside-hakumai/hyper-wallpaper/demo/demo.gif)
 
