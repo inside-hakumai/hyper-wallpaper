@@ -152,32 +152,37 @@ exports.decorateTerms = (Terms, {React, notify, Notification}) => {
 };
 
 exports.decorateMenu = (menu) => {
+  const isMac = process.platform === 'darwin';
+  const pluginMenuLabel = isMac ? 'Plugins' : 'Plugins';
 
-  let indexForPluginItemInMenu = menu.findIndex((element) => {
-    return element['label'] === 'Plugins'
+  const pluginMenuIndex = menu.findIndex((element) => {
+    return element.label === pluginMenuLabel;
   });
 
-  menu[indexForPluginItemInMenu]['submenu'].push({
-    type: 'separator'
-  });
-  menu[indexForPluginItemInMenu]['submenu'].push({
-    label: 'hyper-wallpaper',
-    submenu: [
-      {
-        label: 'Switch to previous profile',
-        accelerator: 'command+o',
-        click: (_menuItem, browserWindow, _event) => {
-          browserWindow.rpc.emit('TOGGLE_WALLPAPER_PROFILE', 'prev');
+  if (pluginMenuIndex !== -1) {
+    const submenu = menu[pluginMenuIndex].submenu;
+
+    submenu.push({ type: 'separator' });
+    submenu.push({
+      label: 'hyper-wallpaper',
+      submenu: [
+        {
+          label: 'Switch to previous profile',
+          accelerator: 'command+o',
+          click: (_menuItem, browserWindow, _event) => {
+            browserWindow.rpc.emit('TOGGLE_WALLPAPER_PROFILE', 'prev');
+          }
+        },
+        {
+          label: 'Switch to next profile',
+          accelerator: 'command+p',
+          click: (_menuItem, browserWindow, _event) => {
+            browserWindow.rpc.emit('TOGGLE_WALLPAPER_PROFILE', 'next');
+          }
         }
-      }, {
-        label: 'Switch to next profile',
-        accelerator: 'command+p',
-        click: (_menuItem, browserWindow, _event) => {
-          browserWindow.rpc.emit('TOGGLE_WALLPAPER_PROFILE', 'next');
-        }
-      }
-    ]
-  });
+      ]
+    });
+  }
 
-  return menu
+  return menu;
 };
